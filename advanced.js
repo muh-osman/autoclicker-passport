@@ -8,7 +8,7 @@ var counter = 0;
 
 btnClick();
 
-// Function that changes the timer randomly between (6000 - 9000)
+// Function that changes the timer randomly between (6000s - 9000s)
 function changeTimer() {
   time = Math.trunc((Math.random() * (9 - 6 + 1) + 6) * 1000);
 }
