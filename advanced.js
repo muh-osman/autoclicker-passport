@@ -8,7 +8,7 @@ var counter = 0;
 
 btnClick();
 
-// Function that changes the timer randomly between (6000s - 9000s)
+// Function that changes the timer randomly between (6000ms - 9000ms)
 function changeTimer() {
   time = Math.trunc((Math.random() * (9 - 6 + 1) + 6) * 1000);
 }
@@ -23,3 +23,5 @@ function btnClick() {
   changeTimer();
   const myTimeout = setTimeout(btnClick, time);
 }
+
+// Stop function automatically:
