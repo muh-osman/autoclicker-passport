@@ -23,17 +23,18 @@ function changeTimer() {
 
 // Function to run at irregular intervals
 function btnClick() {
+
   try {
 
     // Stop function automatically:
     if (element.classList.contains("mat-step-icon-selected") === true) {
       console.log("Done");
       soundSuccess.play();
-    } else {
 
+    } else {
       document.getElementsByTagName("form")[1].elements[2].click();
       counter++;
-      console.log(counter);
+      console.log(`${counter} tries`);
       soundTry.play();
 
       changeTimer();
@@ -42,8 +43,8 @@ function btnClick() {
     }
 
     // Slow internet! this will let the code try again
-  } catch (error) {
-    console.log("slow internet");
+  } catch {
+    console.log("slow internet, try again..");
     setTimeout(btnClick, time);
   }
 }
