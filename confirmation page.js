@@ -10,9 +10,10 @@ const soundSuccess = new Audio(
 var time = 6500;
 var counter = 0;
 // The element that will trigger stop the function(number 3 top left screen corner)
-var element = document.querySelectorAll(
-  ".mat-step-icon.mat-step-icon-state-number"
-)[1];
+
+// var stopElement = document.querySelectorAll(
+//   ".mat-step-icon.mat-step-icon-state-number"
+// )[1];
 
 btnClick();
 
@@ -23,28 +24,29 @@ function changeTimer() {
 
 // Function to run at irregular intervals
 function btnClick() {
-
-  try {
-
+//   try {
     // Stop function automatically:
-    if (element.classList.contains("mat-step-icon-selected") === true) {
-      console.log("Done");
-      soundSuccess.play();
-
-    } else {
-      document.getElementsByTagName("form")[1].elements[2].click();
+    // if (stopElement.classList.contains("mat-step-icon-selected") === true) {
+    //   console.log("Done");
+    //   soundSuccess.play();
+    // } else {
+      document.getElementsByTagName("button")[1].click();
       counter++;
       console.log(`${counter} tries`);
       soundTry.play();
 
       changeTimer();
 
+      setTimeout(() => {
+        document.getElementsByTagName("button")[4].click();
+      }, 1000);
+
       setTimeout(btnClick, time);
-    }
+    // }
 
     // Slow internet! this will let the code try again
-  } catch {
-    console.log("slow internet, try again..");
-    setTimeout(btnClick, time);
-  }
+//   } catch {
+    // console.log("slow internet, try again..");
+    // setTimeout(btnClick, time);
+//   }
 }
