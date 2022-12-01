@@ -9,6 +9,10 @@ const soundSuccess = new Audio(
 // Set init timer: 6.5s
 var time = 3000;
 var counter = 0;
+// The element that will detect next page the function(number 3 top left screen corner)
+var nextPage = document.querySelectorAll(
+  ".mat-step-icon.mat-step-icon-state-number"
+)[1];
 
 btnClick();
 
@@ -21,18 +25,16 @@ function changeTimer() {
 function btnClick() {
   try {
     // if Next page opened (بيانات صاحب العلاقة)
-    if (document.querySelectorAll(".mat-step-icon.mat-step-icon-state-number")[1].classList.contains("mat-step-icon-selected") === true) {
+    if (nextPage.classList.contains("mat-step-icon-selected") === true) {
       console.log("First Steep Done");
       soundSuccess.play();
 
       try {
         secondPage();
-
       } catch {
         console.log("slow internet, try again..");
         setTimeout(btnClick, time);
       }
-
     } else {
       // First Page (بيانات تسليم المعاملة) => (الخطوة التالية)
       document.getElementsByTagName("form")[1].elements[2].click();
@@ -53,7 +55,6 @@ function btnClick() {
 }
 
 function secondPage() {
-
   // Second page (بيانات صاحب العلاقة) => (حفظ ومتابعة)
   document.getElementsByTagName("form")[2].elements[8].click();
   console.log("Second Steep Done");
@@ -67,11 +68,9 @@ function secondPage() {
       secondPage();
     }
   }, 2000);
-
 }
 
 function thirdPage() {
-
   // Third page => (تثبيت)
   document.getElementsByTagName("button")[1].click();
   console.log("Third Steep Done");
@@ -88,13 +87,12 @@ function thirdPage() {
           console.log("ALL Done (نعم)");
         } else {
           thirdPage();
+          console.log("try again..");
         }
       }, 2000);
-
     } catch {
       thirdPage();
       console.log("slow internet, try again..");
     }
   }, 1000);
-
 }
