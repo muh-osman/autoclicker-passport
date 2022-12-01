@@ -9,10 +9,6 @@ const soundSuccess = new Audio(
 // Set init timer: 6.5s
 var time = 3000;
 var counter = 0;
-// The element that will trigger stop the function(number 3 top left screen corner)
-var stopElement = document.querySelectorAll(
-  ".mat-step-icon.mat-step-icon-state-number"
-)[1];
 
 btnClick();
 
@@ -25,16 +21,18 @@ function changeTimer() {
 function btnClick() {
   try {
     // if Next page opened (بيانات صاحب العلاقة)
-    if (stopElement.classList.contains("mat-step-icon-selected") === true) {
+    if (document.querySelectorAll(".mat-step-icon.mat-step-icon-state-number")[1].classList.contains("mat-step-icon-selected") === true) {
       console.log("First Steep Done");
       soundSuccess.play();
 
       try {
         secondPage();
+
       } catch {
         console.log("slow internet, try again..");
         setTimeout(btnClick, time);
       }
+
     } else {
       // First Page (بيانات تسليم المعاملة) => (الخطوة التالية)
       document.getElementsByTagName("form")[1].elements[2].click();
@@ -55,22 +53,25 @@ function btnClick() {
 }
 
 function secondPage() {
+
   // Second page (بيانات صاحب العلاقة) => (حفظ ومتابعة)
   document.getElementsByTagName("form")[2].elements[8].click();
   console.log("Second Steep Done");
   soundSuccess.play();
 
   setTimeout(() => {
-    // if page does not have <form> => I am in a new page (Last page)
+    // if Next page opened (صفحة التثبيت)
     if (document.querySelectorAll("button").length === 4) {
       thirdPage();
     } else {
       secondPage();
     }
   }, 2000);
+
 }
 
 function thirdPage() {
+
   // Third page => (تثبيت)
   document.getElementsByTagName("button")[1].click();
   console.log("Third Steep Done");
@@ -89,9 +90,11 @@ function thirdPage() {
           thirdPage();
         }
       }, 2000);
+
     } catch {
       thirdPage();
       console.log("slow internet, try again..");
     }
   }, 1000);
+
 }
