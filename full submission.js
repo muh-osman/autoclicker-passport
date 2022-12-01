@@ -55,19 +55,25 @@ function btnClick() {
 }
 
 function secondPage() {
-  // Second page (بيانات صاحب العلاقة) => (حفظ ومتابعة)
-  document.getElementsByTagName("form")[2].elements[8].click();
-  console.log("Second Steep Done");
-  soundSuccess.play();
+  try {
+    // Second page (بيانات صاحب العلاقة) => (حفظ ومتابعة)
+    document.getElementsByTagName("form")[2].elements[8].click();
+    console.log("Second Steep Done");
+    soundSuccess.play();
 
-  setTimeout(() => {
-    // if Next page opened (صفحة التثبيت)
-    if (document.querySelectorAll("button").length === 4) {
-      thirdPage();
-    } else {
+    setTimeout(() => {
+      // if Next page opened (صفحة التثبيت)
+      if (document.querySelectorAll("button").length === 4) {
+        thirdPage();
+      } else {
+        secondPage();
+      }
+    }, 2000);
+  } catch {
+    setTimeout(() => {
       secondPage();
-    }
-  }, 2000);
+    }, 2000);
+  }
 }
 
 function thirdPage() {
